@@ -1,0 +1,41 @@
+<div class="row">
+
+    <!-- News LEFT -->
+
+    <div class="col-12 col-sm-6 px-4">
+      <div class="card">
+        <div class="card-header text-center blue-thick"> From The World Of Fitness </div>
+        <div class="card-body" *ngFor="let news of newsArray">
+          <h5 class="card-title"> {{news.title}} </h5>
+          <p class="card-text"> {{news.description}} </p>
+          <a href="{{news.link}}" style="text-decoration: none;">Read More...</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Excercises RIGHT -->
+
+    <div class="col-12 col-sm-6">
+      <div class="card text-center">
+        <div class="card-header blue-thick"> Top 10 Excercises </div>
+        <div class="card-body" *ngFor="let excercise of excercisesArray">
+
+          <a [routerLink]="['/excercise', 
+                                        excercise.name, 
+                                        excercise.type, 
+                                        excercise.muscle, 
+                                        excercise.equipment, 
+                                        excercise.difficulty,
+                                        excercise.instructions 
+                                        ]"
+          style="text-decoration: none;"
+          >
+            <h5 class="card-title"> {{excercise.name}} </h5>
+          </a>
+
+          <p class="card-text"> {{excercise.muscle}} </p>
+        </div>
+      </div>
+    </div>
+</div>

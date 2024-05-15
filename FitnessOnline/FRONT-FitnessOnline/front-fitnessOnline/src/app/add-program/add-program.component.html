@@ -1,0 +1,126 @@
+<div class="container-xs pad-arround">
+    <div class="row no-pad">
+        <h1 class="display-3" style="text-align: center;">Create a program</h1>
+    </div>
+
+    
+    <div class="row justify-content-center sort-div content">
+        <div class="col-auto no-pad">
+            
+                <form (ngSubmit)="addProgram(f)" #f="ngForm">
+                    <div class="mb-4">
+                        <label for="name1" class="form-label">Name</label>
+                        <input #t1="ngModel" type="text" name="name1" class="form-control wide" id="name1" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t1.invalid && t1.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="category" class="form-label">Category</label>
+                        <input #t2="ngModel" type="text" name="category" class="form-control wide" id="name" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t2.invalid && t2.touched">*Input field is required*</span>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea #t3="ngModel" name="description" id="description" class="form-control" rows="3" required ngModel></textarea>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t3.invalid && t3.touched">*Input field is required*</span>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input #t4="ngModel" type="number" name="price" class="form-control wide" id="price" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t4.invalid && t4.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="difficulty" class="form-label">Difficulty</label>
+                        <input #t5="ngModel" type="text" name="difficulty" class="form-control wide" id="difficulty" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t5.invalid && t5.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="duration" class="form-label">Duration</label>
+                        <input #t6="ngModel" type="text" name="duration" class="form-control wide" id="duration" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t6.invalid && t6.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="location" class="form-label">Location</label>
+                        <input #t7="ngModel" type="text" name="location" class="form-control wide" id="location" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t7.invalid && t7.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <label for="activity_type" class="form-label">Activity type</label>
+                        <input #t8="ngModel" type="text" name="activity_type" class="form-control wide" id="activity_type" required ngModel>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t8.invalid && t8.touched">*Input field is required*</span>
+                    </div>
+
+                    
+                    <div class="mb-4">
+                        <input #t9="ngModel" (change)="onCheck()" type="checkbox" name="notBodyweight" class="form-check-input wide" id="notBodyweight" ngModel>
+                        <label for="notBodyweight" class="form-label">Equipment included</label>
+                    </div>
+
+                    
+                    <!-- ONLY IF EQUIPMENT - CHECKED -->
+                    <div *ngIf="checked">
+
+                        <div class="mb-4">
+                            <label for="equipment" class="form-label">Equipment</label>
+                            <input #t10="ngModel" type="text" name="equipment" class="form-control wide" id="equipment" required ngModel>
+                        </div>
+                        <div class="error">
+                            <span class="help-block" *ngIf="t10.invalid && t10.touched">*Input field is required*</span>
+                        </div>
+    
+                    </div>
+                    
+
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Photo</label>
+                        <input type="file" name="photo" class="form-control signup-input" id="photo" ngModel>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="trainerName" class="form-label">Trainer's username</label>
+                        <input type="text" name="trainerName" class="form-control signup-input" id="trainerName" ngModel>
+                    </div>
+
+                    <br><br>
+
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" ngModel>    
+
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Create</button>    
+                    </div>
+                </form>
+
+
+        </div>
+    </div>
+</div>

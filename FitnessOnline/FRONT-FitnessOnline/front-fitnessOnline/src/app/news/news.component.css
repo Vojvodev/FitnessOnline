@@ -1,0 +1,17 @@
+.row{
+    padding-bottom: 80px;
+    padding-top: 20px;
+    max-width: 100%;
+}
+
+.blue-thick{
+    color: #059;
+    font-family: Roboto-heavy, sans-serif;
+    font-size: 20px;
+    -webkit-text-stroke: 2px; 
+}
+
+.card-title{
+    font-weight: 900;
+    text-align: center;
+}

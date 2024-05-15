@@ -1,0 +1,135 @@
+<div class="container-xs login">
+    <div class="row" style="margin-right: 0;">
+        <div class="col-8 first-col">
+            <p class="text1">
+                LOGIN TO YOUR ACCOUNT
+            </p>
+
+            <div class="form1">
+                <form (ngSubmit)="onLogin(f)" #f="ngForm">
+                    <div class="mb-3">
+                        <label for="logUsername" class="form-label">Enter Your Username</label>
+                        <input #u1="ngModel" type="text" name="logUsername" class="form-control login-input" id="logUsername" placeholder="username" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="u1.invalid && u1.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="logPassword" class="form-label">Enter Your Password</label>
+                        <input #p1="ngModel" type="password"  name="logPassword" class="form-control login-input" id="logPassword" placeholder="password" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="p1.invalid && p1.touched">*Input field is required*</span>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary big-button" [disabled]="f.invalid">Log in</button>
+
+                </form>
+            </div>
+        </div>
+
+
+        <hr class="horizontal-line">
+
+
+        <div class="col-1 second-col">              <!-- Invisible for desktop -->
+            <div class="vertical-line"></div>
+        </div>
+
+
+        <div class="third-col" [ngClass]="{'col-12': isSmallScreen, 'col-3': !isSmallScreen}">
+            <p class="text2">
+                DONT HAVE AN ACCOUNT? <br>
+            </p>
+            <p class="text3">SIGN UP INSTEAD</p>
+
+            <div style="text-align: center; padding-bottom: 50px;">
+                <form (ngSubmit)="onSignup(f1)" #f1="ngForm">
+                    <div class="mb-3">
+                        <label for="fname" class="form-label">Your First Name</label>
+                        <input #fn="ngModel" type="text" name="fname" class="form-control signup-input" id="fname" placeholder="eg. Darijo" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="fn.invalid && fn.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">Your Last Name</label>
+                        <input #ln="ngModel" type="text" name="lname" class="form-control signup-input" id="lname" placeholder="eg. Prerad" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="ln.invalid && ln.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="signUsername" class="form-label">Create A Username</label>
+                        <input #u2="ngModel" type="text" name="signUsername" class="form-control signup-input" id="signUsername" placeholder="eg. Njegos1389" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="u2.invalid && u2.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input #e="ngModel" type="email" name="email" class="form-control signup-input" id="email" placeholder="eg. darijo@gmail.com" ngModel required email>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="e.invalid && e.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="signPassword" class="form-label">Create A Password</label>
+                        <input #sp="ngModel" type="password" name="signPassword" class="form-control signup-input" id="signPassword" placeholder="eg. 5tR0nGp@55worD" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="sp.invalid && sp.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="passwordConfirm" class="form-label">Confirm Your Password</label>
+                        <input #spc="ngModel" type="password" name="passwordConfirm" class="form-control signup-input" id="passwordConfirm" placeholder="eg. 5tR0nGp@55worD" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="spc.invalid && spc.touched">*Input field is required*</span>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="passwordsDifferent">*Passwords do not match*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Your City</label>
+                        <input #c="ngModel" type="text" name="city" class="form-control signup-input" id="city" placeholder="eg. Banja Luka" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="c.invalid && c.touched">*Input field is required*</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="avatar" class="form-label">Upload your avatar photo</label>
+                        <input type="file" name="avatar" class="form-control signup-input" id="avatar" ngModel>
+                    </div>
+                    <br><br>
+
+                    <div class="mb-4">
+                        <input (change)="onCheck()" type="checkbox" name="trainer" class="form-check-input wide" id="trainer" ngModel>
+                        <label for="trainer" class="form-label">Trainer</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contact" class="form-label">Contact info</label>
+                        <input #contact="ngModel" type="text" name="contact" class="form-control signup-input" id="contact" placeholder="eg. 065-204/724" ngModel required>
+                    </div>
+                    <div class="error">
+                        <span class="help-block" *ngIf="contact.invalid && contact.touched">*Input field is required*</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary big-button red" [disabled]="f1.invalid">Sign up</button>
+                    
+
+                  </form>
+            </div>
+            
+        </div>
+    </div>
+</div>

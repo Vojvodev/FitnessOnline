@@ -1,0 +1,39 @@
+
+
+<div class="card-list">
+    <div class="row row-cols-1" style="margin-right: 0;">
+
+        <div class="card" *ngFor="let comment of commentService.getCommentsList(); let i = index">
+            <h5 class="card-header">{{commenter[i]}}</h5>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-3 text-muted">{{comment.createdAt}}</h6>
+                <p class="card-text">{{comment.content}}</p>
+            </div>
+        </div>
+    
+
+        <div class="card">
+            <form (ngSubmit)="onPostComment(f)" #f="ngForm">
+
+                <input #t1="ngModel" type="text" class="card-header" name="name1" placeholder={{currentUsername}} ngModel disabled>
+
+                <div class="card-body">
+                    <textarea #t2="ngModel" name="comment" id="txtid" class="form-control" rows="4" placeholder="Leave a comment" ngModel required></textarea>
+                    <div class="error">
+                        <span class="help-block" *ngIf="t2.invalid && t2.touched">*Input field is required*</span>
+                    </div>
+                    
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" ngModel>
+
+                    <button type="submit" class="btn btn-primary big-button" [disabled]="f.invalid || !isLoggedIn ">Comment</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+</div>

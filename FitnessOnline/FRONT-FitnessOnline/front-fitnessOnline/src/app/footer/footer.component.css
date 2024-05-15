@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #059;
+}
+
+.link{
+    text-decoration: none;
+    padding-left: 2vw;
+    font-weight: 900;
+}
+
+label{
+    color: white;
+    text-align: center;
+}
+
+.motivation{
+    color: white;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 0.2cm;
+}

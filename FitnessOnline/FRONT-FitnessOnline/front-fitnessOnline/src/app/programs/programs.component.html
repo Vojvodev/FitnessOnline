@@ -1,0 +1,119 @@
+<div class="container-xs fit" id="plans" >
+    <div class="row">
+        <p class="choose">
+            Follow the steps carefully and become the most complete fighter in the world. <br>
+            The choice is yours. <br>
+        </p>
+        <hr>
+    </div>
+    
+    <!-- SORT AND FILTER PART --> 
+    <div class="row justify-content-end sort-div">
+        <div class="col-auto no-pad">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter
+            </button>
+            <div class="dropdown-menu">
+                <form (ngSubmit)="onFilter(f1)" #f1="ngForm">
+                    <div class="mb-3">
+                        <input type="text" name="category" class="form-control" id="category" placeholder="category" ngModel>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="text" name="difficulty" class="form-control" id="difficulty" placeholder="difficulty" ngModel>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="location" class="form-control" id="location" placeholder="location" ngModel>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price1" class="form-label bold-center">Price between:</label>
+                        <input type="text" name="price1" class="form-control" id="price1" ngModel>
+
+                        <label for="price2" class="form-label bold-center bold-center">and </label>
+                        <input type="text" name="price2" class="form-control" id="price2" ngModel>
+                        
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary" [disabled]="f1.invalid">Apply</button>    
+                    </div>
+                    
+                  </form>
+            </div>
+        </div>
+        
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="onSort('ASC',  'createdAt')">Oldest</a></li>
+                <li><a class="dropdown-item" (click)="onSort('DESC', 'createdAt')">Newest</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" (click)="onSort('ASC',  'price')">Cheapest</a></li>
+                <li><a class="dropdown-item" (click)="onSort('DESC', 'price')">Most Expensive</a></li>
+            </ul>
+        </div>  
+    </div>
+
+
+    <!-- CARDS -->
+    <div class="card-list">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div *ngFor="let program of getProgramsListService().getProgramsList()" class="col">
+                <div class="card">
+                    <a [routerLink]="['/program', program.id]">
+                        <img src={{program.image}} class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">{{program.name}}</h4>
+                        <p class="card-text">{{program.description}}</p>
+
+                        <div style="text-align: end; font-style: italic;">
+                            ${{program.price}}
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Created at {{program.createdAt}} </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADD PROGRAM -->
+            <div class="col">                               
+                <div class="card">
+                    <a [routerLink]="['/add/program']">
+                        <img src="../assets/images/addCard.jpg" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body" style="text-align: center; height: 270px;">
+                        <h2 class="card-title">Add a plan</h2>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Only logged in users can add plans.</small>
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <br>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <a class="page-link" tabindex="-1" (click)="switchPage(currentPage - 1)">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(1)">1</a></li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(2)">2</a></li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(3)">3</a></li>
+          <li class="page-item">
+            <a class="page-link" (click)="switchPage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+    </nav>
+
+</div>

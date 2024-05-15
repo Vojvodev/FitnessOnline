@@ -1,0 +1,50 @@
+<div class="container-xs fit" id="categories" >
+    <div class="row">
+        <p class="choose">
+            Choose the best category for your body type. <br>
+            Start working on your body. <br>
+        </p>
+        <hr>
+    </div>
+    <br> <br>
+
+    <div class="card-list">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div *ngFor="let category of getCategoriesList()" class="col">
+                <div class="card">
+                    <a href="#plans" (click)="categoryClick(category.name)">                                    
+                        <img src={{category.image}} class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h2 class="card-title">{{category.name}}</h2>
+
+                        <div style="text-align: end; padding-top: 50px;">
+                            <a href="#" style="text-decoration: none; color:#059;" (click)="onSubscribe(category.name)">Subscribe</a>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <a class="page-link" tabindex="-1" (click)="switchPage(currentPage - 1)">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(1)">1</a></li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(2)">2</a></li>
+          <li class="page-item"><a class="page-link" (click)="switchPage(3)">3</a></li>
+          <li class="page-item">
+            <a class="page-link" (click)="switchPage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+    </nav>
+
+</div>
