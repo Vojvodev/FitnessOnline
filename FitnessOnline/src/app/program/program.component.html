@@ -1,0 +1,46 @@
+<div class="container-xs pad-arround">
+    
+    <h1 class="display-3"> {{program.name}} </h1>
+
+    <div class="image-div">               
+        <img src={{program.image}} alt="...">
+    </div>
+
+    <div class="text-center" style="padding-top: 10px;">
+        <button type="button" class="btn btn-primary" (click)="onEnroll(program.id)">Enroll</button>
+    </div>
+    
+
+    <dl class="row content">
+        <dt class="col-sm-3 bold">Description </dt>
+        <dd class="col-sm-9"> {{program.description}} </dd>
+
+        <dt class="col-sm-3 bold">Category </dt>
+        <dd class="col-sm-9"> {{program.category.name}} </dd>
+
+        <dt class="col-sm-3 bold">Difficulty </dt>
+        <dd class="col-sm-9"> {{program.difficulty}} </dd>
+        
+        <dt class="col-sm-3 bold">Duration </dt>
+        <dd class="col-sm-9"> {{program.duration}} </dd>
+        
+        <dt class="col-sm-3 bold">Location </dt>
+        <dd class="col-sm-9"> {{program.location}} </dd>
+        
+        <dt class="col-sm-3 bold">Activity type </dt>
+        <dd class="col-sm-9"> {{program.activityType}} </dd>
+        
+        <dt class="col-sm-3 bold">Equipment </dt>
+        <dd class="col-sm-9"> {{program.equipment}} </dd>
+        
+        <dt class="col-sm-3 bold">Price </dt>
+        <dd class="col-sm-9"> {{program.price}} </dd>
+        
+        <dt class="col-sm-3 bold">Created at </dt>
+        <dd class="col-sm-9"> {{program.createdAt}} </dd>
+         
+    </dl>
+
+    <app-comments></app-comments>
+
+</div>

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,6 +56,11 @@ public class ProgramsController {
 		return programsRep.findAll(pageable).getContent();
 	}
 	
+	@GetMapping("/programs-raw")											// get all programs -- without pagination
+	public List<Programs> getAllProgramsRaw(){
+		return programsRep.findAll();
+	}
+	
 	
 	@GetMapping("/programs/sorted")											// get all programs -- sorted -- with pagination
 	public List<Programs> getAllProgramsSorted(
@@ -93,45 +99,47 @@ public class ProgramsController {
 				).getContent();
 	}
 	
-	
+	public static class ProgramDTO {
+        public String name;
+        public String description;
+        public double price;
+        public String difficulty;
+        public String duration;
+        public String location;
+        public String activity_type;
+        public String equipment;
+        public boolean bodyweight;
+        public String image;
+        public String categoryName;
+        public String trainerName;
+    }
 	
 	@PostMapping("/add/program")
-	public ResponseEntity<?> addProgram(	@RequestParam String name,
-											@RequestParam String description,
-											@RequestParam String price,			// need double
-											@RequestParam String difficulty,
-											@RequestParam String duration,
-											@RequestParam String location,
-											@RequestParam String activity_type,
-											@RequestParam String equipment,
-											@RequestParam String bodyweight,	// need boolean
-											@RequestParam String image,
-											@RequestParam String categoryName,	
-											@RequestParam String trainerName
+	public ResponseEntity<?> addProgram(	@RequestBody ProgramDTO request
 											) {
 		
-		Optional<Categories> category = categoriesRep.findByName(categoryName);
-		Optional<Users> trainer = usersRep.findByUsername(trainerName);
+		Optional<Categories> category = categoriesRep.findByName(request.categoryName);
+		Optional<Users> trainer = usersRep.findByUsername(request.trainerName);
 		
 		
 		Programs program = new Programs(
-			name           , 
-			description    ,
-			Double.parseDouble(price), 
-			difficulty     , 
-			duration       , 
-			location       , 
-			activity_type  , 
-			equipment        , 
-			Boolean.parseBoolean(bodyweight), 
-			image          ,
-			category.get() ,
-			null 		   ,
-			trainer.get()  ,
-			null
-			);
+	            request.name,
+	            request.description,
+	            request.price,
+	            request.difficulty,
+	            request.duration,
+	            request.location,
+	            request.activity_type,
+	            request.equipment,
+	            request.bodyweight,
+	            request.image,
+	            category.get(),
+	            null,
+	            trainer.get(),
+	            null
+	        );
 		
-		System.out.println(program.getName() + program.getDescription());
+		System.out.println(program.getName() + program.getDescription() + " FOOO ");
 		
         programsRep.save(program);
         return ResponseEntity.ok("Program added successfully!");

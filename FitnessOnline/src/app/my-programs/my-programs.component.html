@@ -1,0 +1,18 @@
+<h1 class="text-center big-blue very-thick" style="padding-top: 40px; padding-bottom: 40px;">
+    My Programs
+</h1>
+
+<div class="accordion" id="accordionExample">   
+  <div class="accordion-item" *ngFor="let program of programsList; let i=index;">
+    <h2 class="accordion-header" [attr.id]="'heading' + i">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="false" [attr.aria-controls]="'collapse' + i">
+        {{program.name}}
+      </button>
+    </h2>
+    <div [attr.id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" [attr.data-bs-parent]="'#accordionExample'">
+      <div class="accordion-body">
+        {{program.description}}
+      </div>
+    </div>
+  </div>  
+</div>  

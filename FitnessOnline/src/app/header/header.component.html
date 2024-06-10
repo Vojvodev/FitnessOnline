@@ -1,0 +1,36 @@
+<nav class="navbar">
+
+  <div class="dropdown">
+    <button class="btn btn-secondary bi bi-list white-menu" style="width: 100%; padding-right: 10px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" (click)="scrollToCategories()">Categories </a></li>
+      <li><a class="dropdown-item" (click)="srcollToPlans()"     >Plans      </a></li>
+    </ul>
+  </div>
+
+
+  <a routerLink="/" class="logo" >Fitness</a>
+  
+  
+  <form (ngSubmit)="onSearch(f1)" #f1="ngForm" class="d-flex">
+      <input class="form-control me-2 search-bar-wide" type="search" name="search" placeholder="Search" aria-label="Search" ngModel>
+      <button type="submit" class="btn bi bi-search white-search" [disabled]="f1.invalid"></button>
+  </form>
+  
+  <!-- If not logged - show login button -->
+  <button class="login bi bi-person-circle fs-2" type="button" routerLink="/login" *ngIf="!isLoggedIn">log</button>
+
+  <!-- If already logged - show profile button -->
+  <div class="dropdown profile" *ngIf="isLoggedIn">
+    <button class="login bi bi-person-circle fs-2" type="button" id="button" data-bs-toggle="dropdown" aria-expanded="false">
+      
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="button">
+      <li><a class="dropdown-item" (click)="onMyJourney()">My Journey</a></li>
+      <li><a class="dropdown-item" (click)="onMyPrograms()">My Programs</a></li>
+      <li><a class="dropdown-item" (click)="onCreateNew()">Create New</a></li>
+      <li><a class="dropdown-item" (click)="onManageAccount()">Manage Account</a></li>
+      <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>

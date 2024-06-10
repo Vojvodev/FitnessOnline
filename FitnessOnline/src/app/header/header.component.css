@@ -1,0 +1,70 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #059;
+}
+
+.login {
+    color: white;
+    background-color: #059;
+    border: none;
+    margin-left: auto;
+    margin-right: 4%;
+    font-weight: 900;
+    line-height: 1%;
+}
+
+.dropdown{
+    width: 7%;
+    text-align: left;
+}
+
+button{
+    margin-right: 0 !important;
+}
+
+.search-bar-wide{
+    width: 50vw;
+    
+}
+
+.white-search{
+    color: white;
+}
+
+.white-menu{
+    color: white;
+    background-color: #059;
+    width: 5vw;
+    margin-right: 15px;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.profile{
+    text-align: end;
+}
+
+.logo{
+    margin-right: 5px;
+    padding-left: 15px;
+}
+
+
+@media screen and (max-width: 600px){
+    .search-bar-wide{
+        width: 65vw !important;
+        margin-left: 5%;
+    }
+
+    .logo{
+        margin-right: 40%;
+    }
+
+    .profile{
+        margin-right: 20px !important;
+    }
+}

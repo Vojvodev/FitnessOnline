@@ -58,6 +58,18 @@ export class GetsService{
     }
 
 
+    fetchAllProgramsRaw(){
+        return this.http.get<Program[]>(this.baseURL + 'programs-raw')
+            .pipe(map(response => {
+                const planArray = [];
+                for(const key in response){
+                    planArray.push({...response[key]});
+                }
+                return planArray;
+            }));
+    }
+
+
     fetchAllPrograms(page: number, size: number){
         return this.http.get<Program[]>(this.baseURL + 'programs', {
             params: {

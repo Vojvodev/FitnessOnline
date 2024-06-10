@@ -1,0 +1,27 @@
+.pad-arround{
+    padding-top: 50px;
+    width: 100% !important; 
+    padding-left: 5%;
+}
+
+.content{
+    margin: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.sort-div{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.no-pad{
+    margin-right: 0%;
+    padding-right: 0%;
+    width: 95%;
+}
+
+.error{
+    color: red;
+    margin-bottom: 10px;
+}

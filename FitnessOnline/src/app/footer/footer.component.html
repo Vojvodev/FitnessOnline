@@ -1,0 +1,17 @@
+<div class="navbar">
+    <a href="#" class="logo link">
+        Fitness
+    </a>
+
+    
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" style="padding-right: 2vw;">
+        <label for="txtid">Do You Need Help <br> Choosing the Right Program </label> <br>
+        <textarea ngModel name="txt" id="txtid" class="form-control" rows="1" required placeholder="What are you looking for?"></textarea>
+        
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-secondary" style="text-align: center;" [disabled]="!isLoggedIn">Send</button>
+        </div>
+        
+    </form>
+    
+</div>

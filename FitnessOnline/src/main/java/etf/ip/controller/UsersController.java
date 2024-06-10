@@ -62,8 +62,8 @@ public class UsersController {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         
         final String jwt = jwtUtil.generateToken(userDetails);
-        
-        return ResponseEntity.ok(new AuthenticationResponse(null));
+          
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 	
 	

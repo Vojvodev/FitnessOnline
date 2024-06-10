@@ -14,7 +14,7 @@ export class ProgramsListService implements OnInit{
 
 
   ngOnInit(): void {
-      this.getService.fetchAllPrograms(1, 100).subscribe( (programs) => this.programsList = programs );
+      this.fillProgramsList();
   }
 
 
@@ -24,5 +24,9 @@ export class ProgramsListService implements OnInit{
 
   setProgramsList(list: Program[]){
     this.programsList = list;
+  }
+
+  fillProgramsList(){
+    this.getService.fetchAllProgramsRaw().subscribe( (programs) => this.programsList = programs );
   }
 }

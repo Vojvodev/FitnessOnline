@@ -1,0 +1,107 @@
+.login{
+    padding-top: 30px;
+}
+
+.text1{
+    text-align: center;
+    font-style: italic;
+    font-size: 4vw;
+    font-weight: 900;
+    -webkit-text-stroke: 3px;
+}
+
+.form1{
+    text-align: center; 
+    padding-top: 130px;
+}
+
+.text2{
+    color: red;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 2.5vw;
+    font-style: italic;
+    font-weight: 900;
+    -webkit-text-stroke: 1px; 
+}
+
+.text3{
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: 900;
+    padding-bottom: 30px;
+}
+
+.second-col{
+    width: 10px;
+    padding-right: 50px;
+}
+
+.vertical-line {
+    border-left: 2px solid #000;
+    height: 1150px; 
+    margin: 0 auto; /* Center the line horizontally */
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.horizontal-line{
+    display: none;
+    color: black;
+    opacity: calc(0.9);
+    border-width: 2px;
+    height: 10px;
+}
+
+.login-input{
+    width: 68%; 
+    margin-left: 12vw;
+}
+
+.error{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.big-button{
+    width: 100px;
+}
+.red{
+    background-color: red;
+}
+
+
+@media screen and (max-width: 900px) {
+    .first-col{
+        width: 100%;
+        padding-bottom: 60px;
+    }
+    
+    .form1{
+        padding-top: 50px;
+    }
+
+    .second-col{
+        display: none;
+    }
+
+    .horizontal-line{
+        display: block;
+    }
+
+    .text2{
+        font-size: 25px;
+    }
+    .text3{
+        font-size: 20px;
+    }
+
+    .login-input{
+        width: 75%;
+    }
+
+    .signup-input{
+        width: 75%; 
+        margin-left: 12vw;
+    }
+}

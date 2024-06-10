@@ -36,31 +36,37 @@ export class PostsService {
   }
 
 
-  addProgram(
-    name          : string, 
-    description   : string, 
-    price         : number, 
-    difficulty    : string, 
-    duration      : string, 
-    location      : string, 
-    activity_type : string, 
-    equipment     : string, 
-    bodyweight    : boolean, 
-    image         : string,
-    categoryName  : string,
-    trainerName   : string 
-  ){
+  addMessage(content: string, senderId: string){
+    console.log(content);
+    return this.http.post<string>(this.baseURL + 'add/message', { content, senderId });
+  }
 
-    const httpOptions = {
+
+  addProgram(
+              name          : string, 
+              description   : string, 
+              price         : number, 
+              difficulty    : string, 
+              duration      : string, 
+              location      : string, 
+              activity_type : string, 
+              equipment     : string, 
+              bodyweight    : boolean, 
+              image         : string,
+              categoryName  : string,
+              trainerName   : string 
+            ){
+
+    /* const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')
       })
-    };
+    }; */
 
 
-    return this.http.post<string>(this.baseURL + 'add/program', {
-      params: {
+    return this.http.post<string>(this.baseURL + 'add/program', 
+      {
         name          : name         , 
         description   : description  , 
         price         : price        , 
@@ -73,8 +79,8 @@ export class PostsService {
         image         : image        ,
         categoryName  : categoryName , 
         trainerName   : trainerName  
-      }},
-      httpOptions
+      }
+      /* ,httpOptions */
     );
 
   }
@@ -93,6 +99,9 @@ export class PostsService {
   onSubscribe(categoryName: string, username: string){
     return this.http.post<string>(this.baseURL + 'add/subscription'+'?categoryName=' + categoryName + '&username=' + username, {});
   }
+
+
+  
 
 
 }

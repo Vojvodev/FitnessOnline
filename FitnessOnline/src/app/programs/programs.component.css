@@ -1,0 +1,57 @@
+.choose{
+    text-align: center;
+    font-size: large;
+}
+
+hr{
+    width: 90%;
+    margin: auto;
+}
+
+img{
+    width: 100%;
+    height: 50%;
+}
+
+.sort-div{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.no-pad{
+    padding-right: 0%;
+}
+
+.bold-center{
+    font-weight: 900;
+    text-align: center;
+    width: 100%;
+}
+
+
+.card-img-top {
+    height: 250px; 
+    width: 100%; 
+    object-fit: cover; 
+}
+
+.card-body { 
+    overflow: hidden; 
+}
+.card-text{
+    height: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-title{
+    height: 60px;
+    font-weight: 900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fit{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-bottom: 3vw;
+}

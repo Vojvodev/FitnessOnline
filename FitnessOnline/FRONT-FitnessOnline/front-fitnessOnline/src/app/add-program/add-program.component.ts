@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostsService } from '../services/posts.service';
 import { ViewportScroller } from '@angular/common';
+import { ProgramsListService } from '../services/programs-list.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class AddProgramComponent implements OnInit{
 
   constructor(
     private postService: PostsService,
+    private programsListService: ProgramsListService,
     private viewportScroller: ViewportScroller
   ){}
 
@@ -77,6 +79,7 @@ export class AddProgramComponent implements OnInit{
       trainerName
     ).subscribe( (response) => {
       console.log(response);
+      this.programsListService.fillProgramsList();
     });
   
     form.reset();

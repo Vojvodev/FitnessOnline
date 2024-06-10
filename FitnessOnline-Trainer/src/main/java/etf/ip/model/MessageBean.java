@@ -29,13 +29,16 @@ public class MessageBean implements Serializable {
 		this.trainersId = trainers_id;
 		this.sendersId = senders_id;
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		try {
-            java.util.Date parsedDate = dateFormat.parse(createdAt);
-            this.createdAt = new Timestamp(parsedDate.getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+		if(createdAt != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			try {
+	            java.util.Date parsedDate = dateFormat.parse(createdAt);
+	            this.createdAt = new Timestamp(parsedDate.getTime());
+	        } catch (ParseException e) {
+	            this.createdAt = null;
+	        }
+		}
+		
 	}
 
 	

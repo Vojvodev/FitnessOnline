@@ -2,7 +2,17 @@ package etf.ip.model;
 
 
 import java.sql.Timestamp;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Pattern;
 
 
@@ -15,7 +25,7 @@ public class Messages {
 	private int id;
 	
 	@Column(name="content")
-	@Pattern(regexp = "^[a-zA-Z0-9\\p{Punct}]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9\\p{Punct} ]+$")
 	private String content;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -32,14 +42,21 @@ public class Messages {
     @JoinColumn(name = "recipients_id")
 	private Users recipientsId;
 	
+	@ManyToOne
+    @JoinColumn(name = "trainers_id")
+	private Trainers trainersId;
+	
+	
 	// ---------------------------------------------
 	
 
-	public Messages(String content, Users sendersId, Users recipientsId) {
+	public Messages(String content, Users sendersId, Users recipientsId, Trainers trainersId) {
 		super();
 		this.content = content;
 		this.sendersId = sendersId;
 		this.recipientsId = recipientsId;
+		this.trainersId = trainersId;
+		this.createdAt = new Timestamp(System.currentTimeMillis());
 	}
 
 	public Messages() {

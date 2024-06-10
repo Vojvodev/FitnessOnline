@@ -26,15 +26,15 @@ public class Users implements UserDetails{
 	private int id;
 
 	@Column(name="fname")
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]+$")
 	private String fname;
 	
 	@Column(name="lname")
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]+$")
 	private String lname;
 	
 	@Column(name="uname", unique=true)
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]+$")
 	private String username;
 	
 	@Column(name="email")

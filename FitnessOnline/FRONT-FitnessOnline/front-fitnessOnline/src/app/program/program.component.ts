@@ -31,7 +31,14 @@ export class ProgramComponent implements OnInit{
         this.id = +params['id'];
       });
       
+      this.programsListService.fillProgramsList();
       this.program = this.programsListService.getProgramsList()[this.id - 1];
+      if(this.program == null){
+        this.program = this.programsListService.getProgramsList()[this.id - 1 - 5];
+      }
+      if(this.program == null){
+        this.program = this.programsListService.getProgramsList()[this.id - 1 - 5 - 5];
+      }
   }
 
   onEnroll(programId: number){

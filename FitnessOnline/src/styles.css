@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    font-family: Roboto, sans-serif;
+}
+
+.big-blue{
+    color: #059;
+    font-family: Roboto-heavy, sans-serif;
+    font-size: 40px;
+
+}
+
+.very-thick {
+    -webkit-text-stroke: 4px; 
+}
+
+.logo {
+    color: white;
+    margin-right: auto; /* Pushes the logo to the left */
+    font-size: 30px;
+    font-style: italic;
+    font-family: "Anton";
+    -webkit-text-stroke: 2%;
+}

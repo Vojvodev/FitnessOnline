@@ -86,102 +86,102 @@ public class Controller extends HttpServlet {
 				
 	// ------------------------------------------- CATEGORIES -------------------------------------------------------------------
 				
-					else if(action.equals("NewCategory")) {
+				else if(action.equals("NewCategory")) {
+					address = "/WEB-INF/NewCategory.jsp";
+				}
+				else if(action.equals("CreateCategory")) {
+					// A NEW CATEGORY IS CREATED
+					
+					Category category = new Category(request.getParameter("name"), request.getParameter("image"));
+					
+					if( category.getName() != null && category.getImage() != null && 
+							category.getName() != "" && category.getImage() != "" && 
+								CategoryDAO.insert(category)) {
+						
+						String actvity = "Category Successfully Created";
+								
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Categories.jsp";
+					}
+					else {
+						String actvity = "Could Not Create A Category";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/NewCategory.jsp";
 					}
-						else if(action.equals("CreateCategory")) {
-							// A NEW CATEGORY IS CREATED
-							
-							Category category = new Category(request.getParameter("name"), request.getParameter("image"));
-							
-							if( category.getName() != null && category.getImage() != null && 
-									category.getName() != "" && category.getImage() != "" && 
-										CategoryDAO.insert(category)) {
-								
-								String actvity = "Category Successfully Created";
-										
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Categories.jsp";
-							}
-							else {
-								String actvity = "Could Not Create A Category";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/NewCategory.jsp";
-							}
-							
-							
-						}
+					
+					
+				}
 				
-					else if(action.equals("AllCategories")) {
-						// CATEGORIES LOADED INTO SESSION
+				else if(action.equals("AllCategories")) {
+					// CATEGORIES LOADED INTO SESSION
+					
+					ArrayList<Category> categories = CategoryDAO.selectAll();
+					
+					session.setAttribute("categories", categories);
+					
+					address = "/WEB-INF/AllCategories.jsp";
+				}
+				
+				else if(action.equals("UpdateCategory")) {
+					address = "/WEB-INF/UpdateCategory.jsp";
+				}
+				else if(action.equals("SendCategoryUpdate")) {
+					// SEND UPDATE
+					
+					Category category = new Category(request.getParameter("name"), request.getParameter("image"));
+					category.setId(Integer.parseInt(request.getParameter("id")));
+					
+					if( category.getName() != null && category.getImage() != null && 
+							category.getName() != "" && category.getImage() != "" && 
+								CategoryDAO.update(category)) {
 						
-						ArrayList<Category> categories = CategoryDAO.selectAll();
-						
-						session.setAttribute("categories", categories);
-						
-						address = "/WEB-INF/AllCategories.jsp";
+						String actvity = "Category Successfully Updated";
+								
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Categories.jsp";
 					}
-				
-					else if(action.equals("UpdateCategory")) {
+					else {
+						String actvity = "Could Not Update Category";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/UpdateCategory.jsp";
 					}
-						else if(action.equals("SendCategoryUpdate")) {
-							// SEND UPDATE
-							
-							Category category = new Category(request.getParameter("name"), request.getParameter("image"));
-							category.setId(Integer.parseInt(request.getParameter("id")));
-							
-							if( category.getName() != null && category.getImage() != null && 
-									category.getName() != "" && category.getImage() != "" && 
-										CategoryDAO.update(category)) {
-								
-								String actvity = "Category Successfully Updated";
-										
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Categories.jsp";
-							}
-							else {
-								String actvity = "Could Not Update Category";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/UpdateCategory.jsp";
-							}
-							
-							
-						}
+					
+					
+				}
 				
-					else if(action.equals("DeleteCategory")) {
+				else if(action.equals("DeleteCategory")) {
+					address = "/WEB-INF/DeleteCategory.jsp";
+				}
+				else if(action.equals("SendCategoryDelete")) {
+					// SEND DELETE
+					
+					int myId = -1;
+					if(request.getParameter("id") != null && request.getParameter("id") != "") {
+						myId = Integer.parseInt(request.getParameter("id"));
+					}
+					
+					if( myId != -1 && CategoryDAO.delete(myId)) {
+						String actvity = "Category Successfully Deleted";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Categories.jsp";
+					}
+					else {
+						String actvity = "Could Not Delete A Category";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/DeleteCategory.jsp";
 					}
-						else if(action.equals("SendCategoryDelete")) {
-							// SEND DELETE
-							
-							int myId = -1;
-							if(request.getParameter("id") != null && request.getParameter("id") != "") {
-								myId = Integer.parseInt(request.getParameter("id"));
-							}
-							
-							if( myId != -1 && CategoryDAO.delete(myId)) {
-								String actvity = "Category Successfully Deleted";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Categories.jsp";
-							}
-							else {
-								String actvity = "Could Not Delete A Category";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/DeleteCategory.jsp";
-							}
-							
-						}
+					
+				}
 				
 	// ----------------------------------- USERS FRONT PAGE ---------------------------------------------------
 				
@@ -191,223 +191,223 @@ public class Controller extends HttpServlet {
 				
 	// ------------------------------------ USERS -------------------------------------------------------------
 				
-					else if(action.equals("NewUser")) {
+				else if(action.equals("NewUser")) {
+					address = "/WEB-INF/NewUser.jsp";
+				}
+				else if(action.equals("CreateUser")) {
+					// A NEW USER IS CREATED
+					
+					User user = new User(
+											request.getParameter("fname"),
+											request.getParameter("lname"),
+											request.getParameter("username"),
+											request.getParameter("email"),
+											request.getParameter("password"),
+											false,								// TRAINER
+											request.getParameter("contact"),
+											request.getParameter("city"),
+											request.getParameter("avatar")
+										);
+					
+					if(user != null && UserDAO.insert(user)) {
+						String actvity = "User Successfully Created";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Users.jsp";
+					}
+					else {
+						String actvity = "Could Not Create A User";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/NewUser.jsp";
 					}
-						else if(action.equals("CreateUser")) {
-							// A NEW USER IS CREATED
-							
-							User user = new User(
-													request.getParameter("fname"),
-													request.getParameter("lname"),
-													request.getParameter("username"),
-													request.getParameter("email"),
-													request.getParameter("password"),
-													false,								// TRAINER
-													request.getParameter("contact"),
-													request.getParameter("city"),
-													request.getParameter("avatar")
-												);
-							
-							if(user != null && UserDAO.insert(user)) {
-								String actvity = "User Successfully Created";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Create A User";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/NewUser.jsp";
-							}
-							
-						}
-				
-					else if(action.equals("AllUsers")) {
-						// USERS STORED IN SESSION
-						
-						ArrayList<User> users = UserDAO.selectAll();
-						session.setAttribute("users", users);
-						
-						address = "/WEB-INF/AllUsers.jsp";
+					
+				}
+			
+				else if(action.equals("AllUsers")) {
+					// USERS STORED IN SESSION
+					
+					ArrayList<User> users = UserDAO.selectAll();
+					session.setAttribute("users", users);
+					
+					address = "/WEB-INF/AllUsers.jsp";
+				}
+			
+				else if(action.equals("UpdateUser")) {
+					address = "/WEB-INF/UpdateUser.jsp";
+				}
+				else if(action.equals("SendUserUpdate")) {
+					// SEND UPDATE
+					
+					User user = new User(
+							request.getParameter("fname"),
+							request.getParameter("lname"),
+							request.getParameter("username"),
+							request.getParameter("email"),
+							request.getParameter("password"),
+							false,								// TRAINER
+							request.getParameter("contact"),
+							request.getParameter("city"),
+							request.getParameter("avatar")
+						);
+					
+					int myInt = -1;
+					if(request.getParameter("id") != null && request.getParameter("id") != ""){
+						myInt = Integer.parseInt(request.getParameter("id"));
 					}
-				
-					else if(action.equals("UpdateUser")) {
+					
+					user.setId(myInt);
+					
+					if(user != null && myInt != -1 && UserDAO.update(user)) {
+						String actvity = "User Successfully Updated";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Users.jsp";
+					}
+					else {
+						String actvity = "Could Not Update A User";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/UpdateUser.jsp";
+					}	
+
+				}
+			
+				else if(action.equals("DeleteUser")) {
+					address = "/WEB-INF/DeleteUser.jsp";
+				}
+				else if(action.equals("SendUserDelete")) {
+					// SEND DELETE
+					
+					int myInt2 = -1;
+					if(request.getParameter("id") != null && request.getParameter("id") != "") {
+						myInt2 = Integer.parseInt(request.getParameter("id"));
 					}
-						else if(action.equals("SendUserUpdate")) {
-							// SEND UPDATE
-							
-							User user = new User(
-									request.getParameter("fname"),
-									request.getParameter("lname"),
-									request.getParameter("username"),
-									request.getParameter("email"),
-									request.getParameter("password"),
-									false,								// TRAINER
-									request.getParameter("contact"),
-									request.getParameter("city"),
-									request.getParameter("avatar")
-								);
-							
-							int myInt = -1;
-							if(request.getParameter("id") != null && request.getParameter("id") != ""){
-								myInt = Integer.parseInt(request.getParameter("id"));
-							}
-							
-							user.setId(myInt);
-							
-							if(user != null && myInt != -1 && UserDAO.update(user)) {
-								String actvity = "User Successfully Updated";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Update A User";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/UpdateUser.jsp";
-							}	
-		
-						}
-				
-					else if(action.equals("DeleteUser")) {
+					
+					
+					if(myInt2 != -1 && UserDAO.delete(myInt2)) {
+						String actvity = "User Successfully Deleted";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
+						address = "/WEB-INF/Users.jsp";
+					}
+					else {
+						String actvity = "Could Not Delete A User";
+						
+						session.setAttribute("notification", actvity);
+						LogDAO.insertLog(currentAdmin, actvity);
 						address = "/WEB-INF/DeleteUser.jsp";
 					}
-						else if(action.equals("SendUserDelete")) {
-							// SEND DELETE
-							
-							int myInt2 = -1;
-							if(request.getParameter("id") != null && request.getParameter("id") != "") {
-								myInt2 = Integer.parseInt(request.getParameter("id"));
-							}
-							
-							
-							if(myInt2 != -1 && UserDAO.delete(myInt2)) {
-								String actvity = "User Successfully Deleted";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Delete A User";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/DeleteUser.jsp";
-							}
-							
-							
-						}
+					
+					
+				}
 				
 	// -------------------------------------------------- TRAINERS ----------------------------------------------
 					
-					else if(action.equals("NewTrainer")) {
-						address = "/WEB-INF/NewTrainer.jsp";
+				else if(action.equals("NewTrainer")) {
+					address = "/WEB-INF/NewTrainer.jsp";
+				}
+					else if(action.equals("CreateTrainer")) {
+						// KREIRANJE TRENERA
+						Trainer trainer = new Trainer(
+								request.getParameter("fname"),
+								request.getParameter("lname"),
+								request.getParameter("email"),
+								request.getParameter("password")
+							);
+		
+						if(trainer != null && TrainerDAO.insert(trainer)) {
+							String actvity = "Trainer Successfully Created";
+							
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/Users.jsp";
+						}
+						else {
+							String actvity = "Could Not Create Trainer";
+							
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/NewTrainer.jsp";
+						}
 					}
-						else if(action.equals("CreateTrainer")) {
-							// KREIRANJE TRENERA
-							Trainer trainer = new Trainer(
-									request.getParameter("fname"),
-									request.getParameter("lname"),
-									request.getParameter("email"),
-									request.getParameter("password")
-								);
+				else if(action.equals("AllTrainers")) {
+					// Trainers STORED IN SESSION
+					
+					ArrayList<Trainer> trainers = TrainerDAO.selectAll();
+					session.setAttribute("trainers", trainers);
+					
+					address = "/WEB-INF/AllTrainers.jsp";
+				}
 			
-							if(trainer != null && TrainerDAO.insert(trainer)) {
-								String actvity = "Trainer Successfully Created";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Create Trainer";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/NewTrainer.jsp";
-							}
-						}
-					else if(action.equals("AllTrainers")) {
-						// Trainers STORED IN SESSION
+				else if(action.equals("UpdateTrainer")) {
+					address = "/WEB-INF/UpdateTrainer.jsp";
+				}
+					else if(action.equals("SendTrainerUpdate")) {
+						// SEND UPDATE
 						
-						ArrayList<Trainer> trainers = TrainerDAO.selectAll();
-						session.setAttribute("trainers", trainers);
+						Trainer trainer = new Trainer(
+								request.getParameter("fname"),
+								request.getParameter("lname"),
+								request.getParameter("email"),
+								request.getParameter("password")
+							);
 						
-						address = "/WEB-INF/AllTrainers.jsp";
-					}
-				
-					else if(action.equals("UpdateTrainer")) {
-						address = "/WEB-INF/UpdateTrainer.jsp";
-					}
-						else if(action.equals("SendTrainerUpdate")) {
-							// SEND UPDATE
-							
-							Trainer trainer = new Trainer(
-									request.getParameter("fname"),
-									request.getParameter("lname"),
-									request.getParameter("email"),
-									request.getParameter("password")
-								);
-							
-							int myInt3 = -1;
-							if(request.getParameter("id") != null && request.getParameter("id") != "") {
-								myInt3 = Integer.parseInt(request.getParameter("id"));
-							}
-							
-							trainer.setId(myInt3);
-							
-							if(myInt3 != -1 && trainer != null && TrainerDAO.update(trainer)) {
-								String actvity = "Trainer Successfully Updated";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Update Trainer";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/UpdateTrainer.jsp";
-							}	
+						int myInt3 = -1;
+						if(request.getParameter("id") != null && request.getParameter("id") != "") {
+							myInt3 = Integer.parseInt(request.getParameter("id"));
 						}
-				
-					else if(action.equals("DeleteTrainer")) {
-						address = "/WEB-INF/DeleteTrainer.jsp";
-					}
-						else if(action.equals("SendTrainerDelete")) {
-							// SEND DELETE
+						
+						trainer.setId(myInt3);
+						
+						if(myInt3 != -1 && trainer != null && TrainerDAO.update(trainer)) {
+							String actvity = "Trainer Successfully Updated";
 							
-							int myInt4 = -1;
-							if(request.getParameter("id") != null && request.getParameter("id") != "") {
-								myInt4 = Integer.parseInt(request.getParameter("id"));
-							}
-							
-							
-							if(myInt4 != -1 && TrainerDAO.delete(myInt4)) {
-								String actvity = "Trainer Successfully Deleted";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/Users.jsp";
-							}
-							else {
-								String actvity = "Could Not Delete Trainer";
-								
-								session.setAttribute("notification", actvity);
-								LogDAO.insertLog(currentAdmin, actvity);
-								address = "/WEB-INF/DeleteTrainer.jsp";
-							}
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/Users.jsp";
 						}
+						else {
+							String actvity = "Could Not Update Trainer";
+							
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/UpdateTrainer.jsp";
+						}	
+					}
+			
+				else if(action.equals("DeleteTrainer")) {
+					address = "/WEB-INF/DeleteTrainer.jsp";
+				}
+					else if(action.equals("SendTrainerDelete")) {
+						// SEND DELETE
+						
+						int myInt4 = -1;
+						if(request.getParameter("id") != null && request.getParameter("id") != "") {
+							myInt4 = Integer.parseInt(request.getParameter("id"));
+						}
+						
+						
+						if(myInt4 != -1 && TrainerDAO.delete(myInt4)) {
+							String actvity = "Trainer Successfully Deleted";
+							
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/Users.jsp";
+						}
+						else {
+							String actvity = "Could Not Delete Trainer";
+							
+							session.setAttribute("notification", actvity);
+							LogDAO.insertLog(currentAdmin, actvity);
+							address = "/WEB-INF/DeleteTrainer.jsp";
+						}
+					}
 	
 	// -------------------------------------------------- STATISTICS ---------------------------------------------------
 				

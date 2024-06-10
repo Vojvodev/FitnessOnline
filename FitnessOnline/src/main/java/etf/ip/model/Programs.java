@@ -17,11 +17,11 @@ public class Programs {
 	private int id;
 	
 	@Column(name="name")
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]+$", message = "Name must contain only alphanumeric characters")
 	private String name;
 	
 	@Column(name="description")
-	@Pattern(regexp = "^[a-zA-Z0-9\\p{Punct}]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9\\p{Punct} ]+$", message = "Description must contain only alphanumeric characters and punctuation")
 	private String description;
 	
 	@Column(name="price")

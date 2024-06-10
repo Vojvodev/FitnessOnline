@@ -24,7 +24,7 @@ public class Comments {
 	private int id;
 	
 	@Column(name="content")
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9\\p{Punct} ]+$")
 	private String content;
 	
 	@Temporal(TemporalType.TIMESTAMP)

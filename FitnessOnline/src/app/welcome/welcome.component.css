@@ -1,0 +1,53 @@
+.image-row{
+    background-image: url('/assets/images/welcome.jpg');
+    background-size: cover; 
+    background-position: center;  
+    height: 600px; 
+}
+
+.row{
+    margin: 0;
+}
+
+.line{
+    color: white;
+    text-align: center;
+    font-style: italic;
+    font-family: "Anton";
+    -webkit-text-stroke: 2%;
+}
+
+.line1{
+    font-size: 15vw;
+}
+.line2{
+    font-size: 1.5vw;
+}
+.line3{
+    color: rgb(255, 55, 0);
+    font-size: 1.5vw;
+    letter-spacing: 0.5cm;
+}
+@media screen and (max-width: 900px){
+    .line2{
+        font-size: 20px;
+    }
+    .line3{
+        font-size: 5vw;
+        letter-spacing: normal;
+    }
+}
+
+.col{
+    -webkit-text-stroke: 3px; 
+    text-align: center;
+    height: 5vw;
+    min-height: 50px;
+    width: 100%;
+    background-color: #f0f0ff;
+    padding-top: 2vw;
+}
+
+.fit{
+    padding-bottom: 3vw;
+}

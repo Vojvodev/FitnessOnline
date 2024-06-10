@@ -18,11 +18,11 @@ public class Categories {
 	private int id;
 	
 	@Column(name="name")
-	@Pattern(regexp = "^[a-zA-Z0-9]*$")
+	@Pattern(regexp = "^[a-zA-Z0-9 ]+$")
 	private String name;
 
 	@Column(name="image")
-	@Pattern(regexp = "^(?:[a-zA-Z]:|/)?(?:[\\w-]+(?:/[\\w-]+)*)*(?:/[\\w-]+\\.\\w+)?$")
+	//@Pattern(regexp = "^(?:[a-zA-Z]:|/)?(?:[\\w-]+(?:/[\\w-]+)*)*(?:/[\\w-]+\\.\\w+)?$")
 	private String image;
 	
 	// -------------------------------- RELATIONS -----------------------------------------
